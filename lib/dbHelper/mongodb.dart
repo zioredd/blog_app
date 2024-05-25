@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:blog_app/dbHelper/constants.dart';
-import 'package:blog_app/features/auth/data/models/user_model.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDbClient {
