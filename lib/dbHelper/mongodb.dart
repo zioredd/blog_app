@@ -1,20 +1,17 @@
 import 'dart:developer';
 import 'package:blog_app/dbHelper/constants.dart';
+import 'package:blog_app/features/auth/data/models/user_model.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 class MongoDbClient {
-  static Db? _db;
+  static Db? db;
 
   static Future<Db> connect() async {
-    if (_db == null) {
-      _db = await Db.create(MONGODB_URI);
-      await _db!.open();
-      inspect(_db);
-      var collection = _db!.collection('users');
-      final document = await collection.insertOne(
-          {"name": "name", "email": "zior@gamail.com", "password": "123zior"});
-      print("mongodb.dart ${document}");
+    if (db == null) {
+      db = await Db.create(MONGODB_URI);
+      await db!.open();
+      inspect(db);
     }
-    return _db!;
+    return db!;
   }
 }
