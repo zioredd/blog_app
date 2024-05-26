@@ -11,8 +11,11 @@ class UserLogin implements UseCase<User, UserLoginParams> {
   });
   @override
   Future<Either<Failure, User>> call(UserLoginParams params) async {
-    return await repository.loginWithEmailPassword(
+    var result = await repository.loginWithEmailPassword(
         email: params.email, password: params.password);
+    print(
+        'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUserLogin: result: $result');
+    return result;
   }
 }
 
