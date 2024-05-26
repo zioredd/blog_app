@@ -13,8 +13,6 @@ class UserLogin implements UseCase<User, UserLoginParams> {
   Future<Either<Failure, User>> call(UserLoginParams params) async {
     var result = await repository.loginWithEmailPassword(
         email: params.email, password: params.password);
-    print(
-        'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUserLogin: result: $result');
     return result;
   }
 }

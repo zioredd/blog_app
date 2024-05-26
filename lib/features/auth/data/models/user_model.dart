@@ -22,4 +22,16 @@ class UserModel extends User {
       'password': password,
     };
   }
+
+  UserModel copyWith({
+    String? name,
+    String? email,
+    String? password,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      email: email ?? this.email,
+      password: password ?? this.password,
+    );
+  }
 }
