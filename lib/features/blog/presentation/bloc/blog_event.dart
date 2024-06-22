@@ -24,3 +24,5 @@ class BlogUpload extends BlogEvent {
   @override
   List<Object> get props => [posterId, title, content, image, topics];
 }
+
+class BlogGetAllBlogs extends BlogEvent {}

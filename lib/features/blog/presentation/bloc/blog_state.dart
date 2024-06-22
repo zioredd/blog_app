@@ -11,7 +11,12 @@ class BlogInitial extends BlogState {}
 
 class BlogLoading extends BlogState {}
 
-class BlogLoaded extends BlogState {}
+class BlogUploadSuccess extends BlogState {}
+
+class BlogDisplaySuccess extends BlogState {
+  final List<Blog> blogs;
+  const BlogDisplaySuccess(this.blogs);
+}
 
 class BlogError extends BlogState {
   final String message;

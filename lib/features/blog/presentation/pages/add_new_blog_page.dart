@@ -15,7 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewBlogPage extends StatefulWidget {
-  route() => MaterialPageRoute(builder: (context) => const AddNewBlogPage());
+  static route() =>
+      MaterialPageRoute(builder: (context) => const AddNewBlogPage());
   const AddNewBlogPage({super.key});
 
   @override
@@ -69,7 +70,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
           listener: (context, state) {
             if (state is BlogError) {
               showSnackBar(context, state.message);
-            } else if (state is BlogLoaded) {
+            } else if (state is BlogUploadSuccess) {
               Navigator.pushAndRemoveUntil(
                 context,
                 const BlogPage().route(),
