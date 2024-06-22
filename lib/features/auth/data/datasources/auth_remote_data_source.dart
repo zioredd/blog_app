@@ -15,24 +15,28 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SupabaseClient supabaseClient;
-  // final Db mongoDb;
 
   AuthRemoteDataSourceImpl(this.supabaseClient);
   @override
   Session? get currentUserSession => supabaseClient.auth.currentSession;
-
   @override
   Future<UserModel> loginWithEmailPassword(
       {required String email, required String password}) async {
+    print('password: $password email: $email');
+
     try {
       final response = await supabaseClient.auth
           .signInWithPassword(password: password, email: email);
+      print('this is successssssssssssssssssssssssssssssssssssss');
       if (response.user == null) {
+        print('user is nullllllllllllllllllllllllll');
         throw ServerException('User is null!');
       }
+      print('the return $UserModel.fromJson(response.user!.toJson())');
       return UserModel.fromJson(response.user!.toJson())
           .copyWith(name: currentUserSession!.user.userMetadata?['name']);
     } catch (e) {
+      print('this is in the catch blockkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
       throw ServerException(e.toString());
     }
   }
@@ -69,29 +73,4 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw ServerException(e.toString());
     }
   }
-
-  // @override
-  // Future<UserModel> signUpWithEmailPassword({
-  //   required String name,
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   try {
-  //     final newUser = {
-  //       'name': name,
-  //       'email': email,
-  //       'password': password,
-  //     };
-  //     final users = mongoDb.collection('users');
-  //     final existingUser = await users.findOne({'email': email});
-  //     if (existingUser != null) {
-  //       throw ServerException('User already exists');
-  //     }
-  //     mongoDb.collection('users').insertOne(newUser);
-  //     print('user inserted to database');
-  //     return UserModel.fromJson(newUser);
-  //   } catch (e) {
-  //     throw ServerException(e.toString());
-  //   }
-  // }
 }

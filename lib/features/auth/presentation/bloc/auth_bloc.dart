@@ -64,7 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _emitAuthSuccess(User user) {
     _appUserCubit.updateUser(user);
     AuthSuccess(user: user);
-    print('AuthBloc: AuthSuccess state emitted with user: $user');
+    print('AuthBloc: AuthSuccess state emitted with user: $user.email');
   }
 
   AuthBloc(
